@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+	<head>
+		<meta charset="UTF-8">
+		<title>Cadastro de Produtos</title>
+	</head>
+	<body>
+		<div layout:fragment="conteudo">
+			<form th:action="@{/produto/cadastrar}" th:object="${produto}" method="post">
+				<div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+					<p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+				</div>
+				<input th:field="*{codigo}" type="hidden">
+				<div class="form-group">
+					<label for="nome">Nome</label>
+					<input th:field="*{nome}" id="nome" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="data">Data Fabricação</label>
+					<input th:field="*{dataFabricacao}" id="data" class="form-control">
+				</div>
+				<div class="form-group">
+					<input th:field="*{novo}" id="novo" type="checkbox">
+					<label for="novo">Novo</label>
+				</div>
+				<div class="form-group">
+					<label for="preco">Preço</label>
+					<input th:field="*{preco}" id="preco" class="form-control">
+				</div>
+				<label for="categoria">Categoria</label>
+				<select th:field="*{categoria}" id="categoria" class="form-control">
+					<option value="">Selecione</option>
+					<option th:each="c:${categorias}"
+								th:value="${c.codigo}" th:text="${c.nome}"></option>
+				</select>
+				<button class="btn btn-success">Cadastrar</button>
+			</form>
+		</div>
+		<div layout:fragment="rodape">
+		</div>
+	</body>
+</html>

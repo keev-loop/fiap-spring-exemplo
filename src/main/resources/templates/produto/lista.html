@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+	<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+	<head>
+		<meta charset="UTF-8">
+		<title>Lista de Produtos</title>
+	</head>
+	<body>
+		<div layout:fragment="conteudo">
+			<div class="alert alert-success" th:if="${msg !=null}" th:text="${msg}"></div>
+			<table class="table">
+				<tr>
+					<th>Nome</th>
+					<th>Preço</th>
+					<th>Data Fabricação</th>
+					<th>Novo</th>
+					<th>Categoria</th>
+					<th></th>
+				</tr>
+				<tr th:each="prod:${produtos}">
+					<td th:text="${prod.nome}"></td>
+					<td th:text="${#numbers.formatDecimal(prod.preco, 1, 2)}"></td></td>
+					<td th:text="${#temporals.format(prod.dataFabricacao, 'dd/MM/yyyy')}"></td>
+					<td th:text="${prod.novo?'Sim':'Não'}"></td>
+					<td th:text="${prod.categoria?.nome}"></td>
+					<td>
+						<a th:href="@{/produto/editar/}+${prod.codigo}"
+							class="btn btn-outline-primary">Editar</a>
+						<button th:onclick="|produtoId.value = ${prod.codigo}|"
+									type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
+							Excluir
+						</button>
+					</td>
+				</tr>
+			</table>
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Deseja excluir o produto?</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+								<span aria-hidden="true">&amp;times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form th:action="@{/produto/excluir}" method="post">
+									<input type="hidden" name="codigo" id="produtoId">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">Não</button>
+									<button type="submit" class="btn btn-danger">Sim</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div layout:fragment="rodape">
+		</div>
+	</body>
+</html>

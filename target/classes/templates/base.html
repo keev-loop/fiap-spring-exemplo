@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<meta charset="UTF-8">
+		<title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">FIAP</title>
+		<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+	</head>
+	<body>
+		<h1>FIAP Store</h1>
+		<div class="container">
+			<div layout:fragment="conteudo"></div>
+		</div>
+		<hr>
+		<div layout:fragment="rodape"></div>
+		<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
+</html>
