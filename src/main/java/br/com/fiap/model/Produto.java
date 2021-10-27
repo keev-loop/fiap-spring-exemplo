@@ -39,5 +39,41 @@ public class Produto {
 	@ManyToOne
 	private Categoria categoria;
 
+	public boolean isNovo() {
+        return novo;
+    }
+
+    public void setNovo(boolean novo) {
+        this.novo = novo;
+    }
+
+    public LocalDate getDataFabricacao() {
+        return dataFabricacao;
+    }
+
+    public void setDataFabricacao(LocalDate dataFabricacao) {
+        this.dataFabricacao = dataFabricacao;
+    }
+
+
+    public Produto(String nome, double preco) {
+        this.nome = nome;
+        this.preco = preco;
+    }
+
+    public Produto(String nome, double preco, boolean novo, LocalDate dataFabricacao) {
+        this.nome = nome;
+        this.preco = preco;
+        this.novo = novo;
+        this.dataFabricacao = dataFabricacao;
+    }
+
+    public Produto(String nome, double preco, boolean novo, LocalDate dataFabricacao, Categoria categoria) {
+        this.nome = nome;
+        this.preco = preco;
+        this.novo = novo;
+        this.dataFabricacao = dataFabricacao;
+        this.categoria = categoria;
+    }
 	
 }

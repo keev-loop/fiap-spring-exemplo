@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}">
+<head>
+    <meta charset="UTF-8">
+    <title>Sucesso</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+<div class="alert alert-success" role="alert">
+    Produto cadastrado com sucesso!
+</div>
+
+<div>
+    <h1>Sucesso!</h1>
+
+    <p th:text="${prod.nome}"></p>
+    <p th:text="${prod.preco}"></p>
+
+    <div th:object="${prod}">
+        <p th:text="*{nome}"></p>
+        <p th:text="*{preco}"></p>
+    </div>
+</div>
+
+<a th:href="@{/produto/listar}">Lista de Produtos</a>
+</div>
+
+<div layout:fragment="rodape">
+</div>
+</body>
+</html>
